@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'superagent'
-import { Widget } from '../models/Widget'
+import { NewWidget, Widget } from '../models/Widget'
 
 const widgetUrl = '/api/v1/widgets/'
 
@@ -11,4 +11,8 @@ export async function fetchWidgets() {
 
 export async function deleteWidget(id: number) {
   await request.delete(`${widgetUrl}${id}`)
+}
+
+export async function addWidget(newWidget: NewWidget) {
+  await request.post(widgetUrl).send(newWidget)
 }

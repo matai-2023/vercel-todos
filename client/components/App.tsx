@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Widget } from '../../models/Widget'
+import WidgetDetail from './WidgetDetail'
 import { fetchWidgets, deleteWidget } from '../apiClient'
+import AddWidget from './AddWidget'
 
 function App() {
   const [widgets, setWidgets] = useState([] as Widget[])
@@ -11,10 +13,12 @@ function App() {
 
   async function loadWidgets() {
     const data = await fetchWidgets()
+
+    // invalidate query
     setWidgets(data)
   }
 
-  function handleDelete(id: number){
+  function handleDelete(id: number) {
     deleteWidget(id)
     loadWidgets()
   }
@@ -22,11 +26,11 @@ function App() {
   return (
     <div>
       <h1>Widgets for the win!</h1>
+      <AddWidget loadWidgets={loadWidgets} />
       <ul>
         {widgets.map((widget) => (
           <li key={widget.id}>
-            <h2>{widget.name}</h2>
-            <button onClick={() => {handleDelete(widget.id)}}>Delete</button>
+            <WidgetDetail widget={widget} handleDelete={handleDelete} />
           </li>
         ))}
       </ul>
