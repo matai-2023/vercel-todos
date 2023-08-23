@@ -3,14 +3,16 @@ import { getWidgets } from '../db/db.ts'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  getWidgets()
-    .then((widgets) => {
-      res.json(widgets)
-    })
-    .catch((err) => {
-      res.status(500).send(err.message)
-    })
+router.get('/', async (req, res) => {
+  try {
+    const widgets = await getWidgets()
+    res.json(widgets)
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error)
+      res.status(500).send(error.message)
+    }
+  }
 })
 
 export default router

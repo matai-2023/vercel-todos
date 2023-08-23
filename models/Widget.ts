@@ -5,10 +5,6 @@ export interface NewWidget {
   inStock: number
 }
 
-export interface Widget {
+export interface Widget extends NewWidget {
   id: number
-  name: string
-  price: number
-  mfg: string
-  inStock: number
 }
