@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Widget } from '../../models/Widget'
-import { fetchWidgets } from '../apiClient'
+import { fetchWidgets, deleteWidget } from '../apiClient'
 
 function App() {
   const [widgets, setWidgets] = useState([] as Widget[])
@@ -14,6 +14,11 @@ function App() {
     setWidgets(data)
   }
 
+  function handleDelete(id: number){
+    deleteWidget(id)
+    loadWidgets()
+  }
+
   return (
     <div>
       <h1>Widgets for the win!</h1>
@@ -21,6 +26,7 @@ function App() {
         {widgets.map((widget) => (
           <li key={widget.id}>
             <h2>{widget.name}</h2>
+            <button onClick={() => {handleDelete(widget.id)}}>Delete</button>
           </li>
         ))}
       </ul>
