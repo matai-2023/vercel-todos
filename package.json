@@ -18,6 +18,9 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",
     "ignorePatterns": [
