@@ -3,6 +3,10 @@
   "builds": {
         { "src": "server/index.js", "use": "@vercel/node" }
   },
+  "redirects": 
+  [
+        { "source": "/assets/(.*)", "destination": "/client/(.*)", "permanent": false }
+  ],
   "routes": [
     {
       "src": "/",
