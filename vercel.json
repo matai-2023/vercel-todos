@@ -4,6 +4,10 @@
     {
       "src": "/(.*)",
       "dest": "dist/server/index.js"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "dist/client/assets/**"
     }
   ]
 }
