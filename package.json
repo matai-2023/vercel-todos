@@ -6,6 +6,7 @@
   "repository": "https://github.com/dev-academy-challenges/react-to-web-api.git",
   "main": "server/index.ts",
   "scripts": {
+    "start": "run-s build start:server",
     "start": "node dist/server/index.js",
     "test": "vitest",
     "dev": "run-p dev:client dev:server",
