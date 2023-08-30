@@ -2,12 +2,12 @@
   "version": 2,
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "dist/server/index.js"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "dist/client/assets/**"
+      "src": "/assets",
+      "dest": "dist/client/assets/index.html"
     }
   ]
 }
