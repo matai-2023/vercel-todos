@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'superagent'
-import { NewWidget, Widget } from '../models/Widget'
+import { NewTodo, Todo } from '../types/Todo'
 
-const widgetUrl = '/api/v1/widgets/'
+const todoUrl = '/api/v1/todos/'
 
-export async function fetchWidgets() {
-  const res = await request.get(widgetUrl)
-  return res.body as Widget[]
+export async function fetchTodos() {
+  const res = await request.get(todoUrl)
+  return res.body as Todo[]
 }
 
-export async function deleteWidget(id: number) {
-  await request.delete(`${widgetUrl}${id}`)
+export async function deleteTodo(id: number) {
+  await request.delete(`${todoUrl}${id}`)
 }
 
-export async function addWidget(newWidget: NewWidget) {
-  await request.post(widgetUrl).send(newWidget)
+export async function addTodo(newTodo: NewTodo) {
+  await request.post(todoUrl).send(newTodo)
 }

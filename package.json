@@ -6,15 +6,14 @@
   "repository": "https://github.com/dev-academy-challenges/react-to-web-api.git",
   "main": "server/index.ts",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/server/index.js",
     "test": "vitest",
     "dev": "run-p dev:client dev:server",
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
     "build": "run-s build:client build:server",
     "build:client": "vite build",
-    "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
-
+    "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server/index.js --bundle server/index.ts",
     "knex": "knex --knexfile server/db/knexfile.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
@@ -61,8 +60,11 @@
     "vitest": "^0.34.1"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.17.2",
     "knex": "^2.5.1",
+    "pg": "^8.11.3",
+    "postgresql": "^0.0.1",
     "react-dom": "^18.2.0",
     "sqlite3": "^5.1.6"
   },

@@ -1,15 +1,15 @@
 import connection from './connection.ts'
 
-import { NewWidget, Widget } from '../../models/Widget.ts'
+import { NewTodo, Todo } from '../../types/Todo.ts'
 
-export function getWidgets(db = connection): Promise<Widget[]> {
-  return db<Widget>('widgets').select()
+export function getTodos(db = connection): Promise<Todo[]> {
+  return db<Todo>('todos').select()
 }
 
-export function deleteWidget(id: number, db = connection) {
-  return db<Widget>('widgets').where('id', id).del()
+export function deleteTodo(id: number, db = connection) {
+  return db<Todo>('todos').where('id', id).del()
 }
 
-export function insertWidget(newWidget: NewWidget, db = connection) {
-  return db('widgets').insert(newWidget)
+export function insertTodo(todo: NewTodo, db = connection) {
+  return db('todos').insert(todo)
 }

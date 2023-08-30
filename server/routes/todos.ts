@@ -1,12 +1,11 @@
 import express from 'express'
-import { getWidgets, deleteWidget, insertWidget } from '../db/db.ts'
+import { getTodos, insertTodo, deleteTodo } from '../db/db.ts'
 
 const router = express.Router()
-//'/api/v1/widgets'
 router.get('/', async (req, res) => {
   try {
-    const widgets = await getWidgets()
-    res.json(widgets)
+    const todos = await getTodos()
+    res.json(todos)
   } catch (error) {
     if (error instanceof Error) {
       console.error(error)
@@ -17,8 +16,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newWidget = req.body
-    await insertWidget(newWidget)
+    const newTodo = req.body
+    await insertTodo(newTodo)
     res.sendStatus(201)
   } catch (error) {
     if (error instanceof Error) {
@@ -31,7 +30,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    await deleteWidget(id)
+    await deleteTodo(id)
     res.sendStatus(200)
   } catch (error) {
     if (error instanceof Error) {

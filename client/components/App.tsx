@@ -1,36 +1,36 @@
 import { useEffect, useState } from 'react'
-import { Widget } from '../../models/Widget'
-import WidgetDetail from './WidgetDetail'
-import { fetchWidgets, deleteWidget } from '../apiClient'
-import AddWidget from './AddWidget'
+import { Todo } from '../../types/Todo'
+import TodoItem from './TodoItem'
+import { fetchTodos, deleteTodo } from '../apiClient'
+import AddTodo from './AddTodo'
 
 function App() {
-  const [widgets, setWidgets] = useState([] as Widget[])
+  const [todos, setTodos] = useState([] as Todo[])
 
   useEffect(() => {
-    loadWidgets()
+    loadTodos()
   }, [])
 
-  async function loadWidgets() {
-    const data = await fetchWidgets()
+  async function loadTodos() {
+    const data = await fetchTodos()
 
     // invalidate query
-    setWidgets(data)
+    setTodos(data)
   }
 
   function handleDelete(id: number) {
-    deleteWidget(id)
-    loadWidgets()
+    deleteTodo(id)
+    loadTodos()
   }
 
   return (
     <div>
-      <h1>Widgets for the win!</h1>
-      <AddWidget loadWidgets={loadWidgets} />
+      <h1>Todos</h1>
+      <AddTodo loadTodos={loadTodos} />
       <ul>
-        {widgets.map((widget) => (
-          <li key={widget.id}>
-            <WidgetDetail widget={widget} handleDelete={handleDelete} />
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <TodoItem todo={todo} handleDelete={handleDelete} />
           </li>
         ))}
       </ul>
